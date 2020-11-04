@@ -29,7 +29,7 @@ namespace Template
             Texture2D t = new Texture2D(GraphicsDevice, 1, 1);
             t.SetData(new Color[1] { Color.White });
             platform = new Platform(t, new Vector2(0, 400), new Point(600, 50));
-            player = new Player(t, new Vector2(100, 100), new Point(10,10));
+            player = new Player(t, new Vector2(100, 100), new Point(15,15));
         }
 
         protected override void UnloadContent()
@@ -46,8 +46,9 @@ namespace Template
             player.Update();
             if (player.Platform.Intersects(platform.Platform))
             {
-                player.Position = new Vector2(player.Position.X,platform.Position.Y) - new Vector2(0,player.Platform.Height);
                 player.Collision();
+                player.Position = new Vector2(player.Position.X,platform.Position.Y) - new Vector2(0,player.Platform.Height);
+               
             }
 
             base.Update(gameTime);
@@ -57,10 +58,12 @@ namespace Template
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
+
             spriteBatch.Begin();
             platform.Draw(spriteBatch);
             player.Draw(spriteBatch);
             spriteBatch.End();
+
             base.Draw(gameTime);
         }
     }

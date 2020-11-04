@@ -28,7 +28,7 @@ namespace Template
             if (a.IsKeyDown(Keys.A))
                 position.X -= 10;
             if (a.IsKeyDown(Keys.Space))
-                position.Y = velocity.Y;
+                position.Y -= 5 ;
 
             velocity.Y += 9.81f * 1f / 60f;
             position.Y += velocity.Y;
