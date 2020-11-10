@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -9,8 +11,15 @@ namespace Template
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        Platform platform;
         Player player;
+        readonly Random random = new Random();
+        List<Platform> platform = new List<Platform>();
+
+
+        
+
+        
+        
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -19,8 +28,11 @@ namespace Template
 
         protected override void Initialize()
         {
-
             base.Initialize();
+
+            graphics.PreferredBackBufferWidth = 1920;
+            graphics.PreferredBackBufferHeight = 1080;
+            graphics.ApplyChanges();
         }
 
         protected override void LoadContent()
@@ -28,8 +40,8 @@ namespace Template
             spriteBatch = new SpriteBatch(GraphicsDevice);
             Texture2D t = new Texture2D(GraphicsDevice, 1, 1);
             t.SetData(new Color[1] { Color.White });
-            platform = new Platform(t, new Vector2(0, 400), new Point(600, 50));
             player = new Player(t, new Vector2(100, 100), new Point(15,15));
+          
         }
 
         protected override void UnloadContent()
